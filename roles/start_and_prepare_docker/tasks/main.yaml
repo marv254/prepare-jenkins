@@ -1,0 +1,11 @@
+- name: Ensure docker is running
+  systemd:
+    name: docker
+    state: started
+- name: Add user to docker group
+  user: 
+    name: ubuntu
+    groups: docker
+    append: yes
+- name: Reconnect to server session
+  meta: reset_connection

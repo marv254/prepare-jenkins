@@ -1,0 +1,18 @@
+- name: Pull Jenkins docker Image
+  community.docker.docker_image:
+    name: jenkins/jenkins:lts
+    source: pull
+   
+- name: create volume for Jenkins 
+  docker_volume:
+    name: jenkins_home
+
+- name: Copy Jenkins docker compose file
+  copy:
+    src: /home/marv/Desktop/jenkins-play/jenkins-docker-compose.yaml
+    dest: /home/ubuntu/docker-compose.yaml
+
+- name: Start Jenkins from docker-compose
+  docker_compose:
+    project_src: /home/ubuntu
+    state: present

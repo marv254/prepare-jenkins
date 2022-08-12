@@ -1,0 +1,12 @@
+---
+- name: Install Docker on Jenkins(Ubuntu) Server
+  hosts: jenkins_servers
+  become: yes
+  roles:
+    - install_docker
+    - start_and_prepare_docker
+   
+- name: Start a dockerized Jenkins container
+  hosts: jenkins_servers  
+  roles:
+    - start_jenkins_container
